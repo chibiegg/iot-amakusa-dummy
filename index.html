@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO</title>
+    <style>
+    </style>
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      socket.on("position", function(data){
+        console.log(data);
+        var li = $("<li>").text(JSON.stringify(data));
+        $("#messages").prepend(li);
+      });
+    </script>
+  </head>
+  <body>
+
+    <ul id="messages">
+    </ul>
+  </body>
+</html>
