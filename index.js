@@ -4,6 +4,8 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var WebSocketServer = require('websocket').server;
 
+var start_time = Math.round((new Date("2016-06-29T00:00:00+09:00").getTime() / 1000));
+
 
 var players = [
   {
@@ -55,9 +57,10 @@ wsServer.on('request', function(request) {
 var get_dummy = function(counter){
     var t = counter;
     var modules = [];
+    var now = (new Date((start_time+t)*1000)).toISOString();
 
     modules.push({
-      datetime: (new Date()).toISOString(),
+      datetime: now,
       module: 1,
       latitude: 32.4240+0.0060*Math.cos(t/100.0),
       longitude: 130.3305+0.0080*Math.sin(t/100.0),
@@ -65,7 +68,7 @@ var get_dummy = function(counter){
     })
 
     modules.push({
-      datetime: (new Date()).toISOString(),
+      datetime: now,
       module: 2,
       latitude: 32.4115+0.0170*Math.cos(t/161.0),
       longitude: 130.3441+0.0210*Math.sin(t/150.0),
