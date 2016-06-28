@@ -14,8 +14,9 @@ wsServer.on('request', function(request) {
   console.log(request.resource);
 
   var format = "json";
+  var path = request.resource.split("?")[0];
 
-  switch(request.resource){
+  switch(path){
     case "/position.json":
       format = "json";
       break;
@@ -45,7 +46,7 @@ var get_dummy = function(counter){
       module: 1,
       latitude: 32.4240+0.0060*Math.cos(t/100.0),
       longitude: 130.3305+0.0080*Math.sin(t/100.0),
-      advanced: 682+221*Math.cos(t/100.0)
+      altitude: 682+221*Math.cos(t/100.0)
     })
 
     modules.push({
@@ -53,7 +54,7 @@ var get_dummy = function(counter){
       module: 2,
       latitude: 32.4115+0.0170*Math.cos(t/161.0),
       longitude: 130.3441+0.0210*Math.sin(t/150.0),
-      advanced: 1677+650*Math.cos(t/150.0)
+      altitude: 1677+650*Math.cos(t/150.0)
     });
 
     return modules;
