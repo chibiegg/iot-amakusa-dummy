@@ -5,6 +5,21 @@ var io = require('socket.io')(http);
 var WebSocketServer = require('websocket').server;
 
 
+var players = [
+  {
+    "id": 1,
+    "module": 1,
+    "number": "01",
+    "name": "競技者01"
+  },
+  {
+    "id": 2,
+    "module": 2,
+    "number": "02",
+    "name": "競技者02"
+  }
+];
+
 wsServer = new WebSocketServer({
     httpServer: http,
     autoAcceptConnections: false
@@ -104,6 +119,10 @@ var send_dummy_socketio = function(socket, counter){
 
 app.get('/', function (req, res) {
   res.sendfile('index.html');
+});
+
+app.get('/api/players.json', function(req, res) {
+  res.json(players);
 });
 
 io.on('connection', function(socket){
